@@ -1,0 +1,6 @@
+node_modules/
+output.mp4
+vibe-video.zip
+renders/
+.remotion/
+*.log

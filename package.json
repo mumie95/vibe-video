@@ -1,0 +1,35 @@
+{
+  "name": "vibe-video",
+  "version": "1.0.0",
+  "description": "原创数学可视化短片：如果概率有形状",
+  "scripts": {
+    "preview": "remotion studio src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render src/index.ts ProbabilityHasShape output.mp4 --codec=h264",
+    "still": "remotion still src/index.ts ProbabilityHasShape renders/gaussian.png --frame=440"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mumie95/vibe-video.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mumie95/vibe-video/issues"
+  },
+  "homepage": "https://github.com/mumie95/vibe-video#readme",
+  "dependencies": {
+    "@remotion/cli": "4.0.535",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.535"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2"
+  },
+  "private": true
+}
