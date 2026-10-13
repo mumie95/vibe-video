@@ -1,42 +1,29 @@
-name: Render Vibe Video
-
+name: Render Vibe Videos
 on:
   workflow_dispatch:
-
+    inputs:
+      composition:
+        description: Remotion composition to render
+        required: false
+        default: ButterflyEffect
 permissions:
   contents: read
-
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
+    timeout-minutes: 45
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 20, cache: npm}
+      - run: npm ci
+      - run: npx remotion browser ensure
+      - run: npm run typecheck
+      - name: Render ButterflyEffect 1080p
+        run: npm run render:butterfly -- --browser-executable=/usr/bin/chromium --concurrency=2
+      - uses: actions/upload-artifact@v4
         with:
-          node-version: 20
-          cache: npm
-
-      - name: Install project dependencies
-        run: npm ci
-
-      - name: Install Remotion browser and Linux dependencies
-        run: npx remotion browser ensure
-
-      - name: TypeScript check
-        run: npm run typecheck
-
-      - name: Render video
-        run: npm run render
-
-      - name: Upload rendered MP4
-        uses: actions/upload-artifact@v4
-        with:
-          name: vibe-video-output
-          path: output.mp4
+          name: butterfly-effect-90s-1080p
+          path: output-butterfly.mp4
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 14

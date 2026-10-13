@@ -6,6 +6,7 @@
     "preview": "remotion studio src/index.ts",
     "typecheck": "tsc --noEmit",
     "render": "remotion render src/index.ts ProbabilityHasShape output.mp4 --codec=h264",
+    "render:butterfly": "remotion render src/index.ts ButterflyEffect output-butterfly.mp4 --codec=h264",
     "still": "remotion still src/index.ts ProbabilityHasShape renders/gaussian.png --frame=440"
   },
   "repository": {
